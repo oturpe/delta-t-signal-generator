@@ -1,0 +1,23 @@
+source avr-config
+
+if [ ! -e ${targetDir} ]; then
+  mkdir ${targetDir}
+fi
+
+avr-gcc -Os -mmcu=${mcu} -o ${targetDir}/${projectName}.out ${sourceDir}/*.cpp
+if [ $? -ne 0 ]; then
+  echo "Build failed"
+  exit 0
+fi
+
+avr-objcopy -j .text -j .data -O ihex ${targetDir}/${projectName}.out ${targetDir}/${projectName}.hex
+if [ -$? -ne 0 ]; then
+  echo "Hex file generation failed"
+  exit 0
+fi
+
+sudo avrdude -b ${baudrate} -c ${programmer} -p ${mcu} -P ${port} -U flash:w:${targetDir}/${projectName}.hex
+if [ $? -ne 0 ]; then
+  echo "Upload failed"
+  exit 0
+fi

@@ -1,0 +1,7 @@
+projectName=delta-t-signal-generator
+sourceDir=src
+targetDir=target
+mcu=attiny2313
+programmer=avrispmkii
+baudrate=19200
+port=/dev/ttyUSB0
