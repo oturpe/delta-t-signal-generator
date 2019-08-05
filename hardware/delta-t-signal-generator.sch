@@ -539,8 +539,6 @@ Connection ~ 10200 4400
 Wire Wire Line
 	10200 4400 10200 4300
 Wire Wire Line
-	5200 5500 3900 5500
-Wire Wire Line
 	9900 4400 10200 4400
 $Comp
 L Device:C C?
@@ -600,8 +598,6 @@ F 3 "" H 5800 5200 50  0001 C CNN
 	1    5800 5200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5200 5500 5200 4900
 Wire Wire Line
 	5200 4900 5500 4900
 $Comp
@@ -776,14 +772,11 @@ Connection ~ 8000 4850
 Wire Wire Line
 	8000 4850 8000 4950
 Wire Wire Line
-	5200 5500 5200 6400
-Wire Wire Line
 	5200 6400 7650 6400
 Wire Wire Line
 	7650 6400 7650 4150
 Wire Wire Line
 	7650 4150 8350 4150
-Connection ~ 5200 5500
 Wire Wire Line
 	8000 5300 8000 5400
 Wire Wire Line
@@ -804,11 +797,18 @@ Wire Wire Line
 	7800 4250 7800 5400
 Wire Wire Line
 	7800 5400 8000 5400
+Connection ~ 8000 5400
+Wire Wire Line
+	8000 5400 8000 5500
+Wire Wire Line
+	5200 4900 5200 5300
+Wire Wire Line
+	3900 5300 5200 5300
 Wire Bus Line
 	5100 3350 5100 3800
 Wire Bus Line
 	4200 3350 4200 4700
-Connection ~ 8000 5400
+Connection ~ 5200 5300
 Wire Wire Line
-	8000 5400 8000 5500
+	5200 5300 5200 6400
 $EndSCHEMATC

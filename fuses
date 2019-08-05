@@ -1,4 +1,4 @@
 source avr-config
 
 # Fuses to be decided later
-sudo avrdude -c ${programmer} -p ${mcu} -U lfuse:w:0x62:m -U hfuse:w:0xdc:m -U efuse:w:0xff:m
+sudo avrdude -c ${programmer} -p ${mcu} -U lfuse:w:0xf7:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m

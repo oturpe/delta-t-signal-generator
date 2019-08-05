@@ -4,22 +4,84 @@
 
 namespace Atmega328p {
 
-void setTimer0Prescaler(Timer0PrescalerValue value) {
+void setTimer0Prescaler(TimerPrescalerValue value) {
   switch (value) {
   case PSV_1:
     TCCR0B |= BV(CS00);
+    TCCR0B &= ~BV(CS02) & ~BV(CS01);
     break;
   case PSV_8:
     TCCR0B |= BV(CS01);
+    TCCR0B &= ~BV(CS02) & ~BV(CS00);
     break;
   case PSV_64:
     TCCR0B |= BV(CS01) | BV(CS00);
+    TCCR0B &= ~BV(CS02);
     break;
   case PSV_256:
     TCCR0B |= BV(CS02);
+    TCCR0B &= ~BV(CS01) & ~BV(CS00);
     break;
   case PSV_1024:
     TCCR0B |= BV(CS02) | BV(CS00);
+    TCCR0B &= ~BV(CS01);
+    break;
+  }
+}
+
+void setTimer1Prescaler(TimerPrescalerValue value) {
+  switch (value) {
+  case PSV_1:
+    TCCR1B |= BV(CS10);
+    TCCR1B &= ~BV(CS12) & ~BV(CS11);
+    break;
+  case PSV_8:
+    TCCR1B |= BV(CS11);
+    TCCR1B &= ~BV(CS12) & ~BV(CS10);
+    break;
+  case PSV_64:
+    TCCR1B |= BV(CS11) | BV(CS10);
+    TCCR1B &= ~BV(CS12);
+    break;
+  case PSV_256:
+    TCCR1B |= BV(CS12);
+    TCCR1B &= ~BV(CS11) & ~BV(CS10);
+    break;
+  case PSV_1024:
+    TCCR1B |= BV(CS12) | BV(CS10);
+    TCCR1B &= ~BV(CS11);
+    break;
+  }
+}
+
+void setTimer2Prescaler(TimerPrescalerValue value) {
+  switch (value) {
+  case PSV_1:
+    TCCR2B |= BV(CS20);
+    TCCR2B &= ~BV(CS22) & ~BV(CS21);
+    break;
+  case PSV_8:
+    TCCR2B |= BV(CS21);
+    TCCR2B &= ~BV(CS22) & ~BV(CS20);
+    break;
+  case PSV_32:
+    TCCR2B |= BV(CS21) | BV(CS20);
+    TCCR2B &= ~BV(CS22);
+    break;
+  case PSV_64:
+    TCCR2B |= BV(CS22);
+    TCCR2B &= ~BV(CS21)  & BV(CS20);
+    break;
+  case PSV_128:
+    TCCR2B |= BV(CS22) | BV(CS20);
+    TCCR2B &= ~BV(CS21);
+    break;
+  case PSV_256:
+    TCCR2B |= BV(CS22) | BV(CS21);
+    TCCR2B &= ~BV(CS20);
+    break;
+  case PSV_1024:
+    TCCR2B |= BV(CS22) | BV(CS21) | BV(CS20);
     break;
   }
 }

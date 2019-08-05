@@ -6,21 +6,40 @@
 namespace Atmega328p {
 
 /// Possible prescaler values for timer 0.
-enum Timer0PrescalerValue {
+enum TimerPrescalerValue {
   PSV_1,
   PSV_8,
+  PSV_32,
   PSV_64,
+  PSV_128,
   PSV_256,
   PSV_1024,
 };
 
 /// Sets timer 0 prescaler to requested value.
-///
-/// This function assumes that Clock Select bits have not been touched yet.
+/// 
+/// Note that timer 0 does not support all possible prescaler values. If the
+/// given value is not supported, nothing is set.
 ///
 /// \param value
 ///   Requested prescaler value
-void setTimer0Prescaler(Timer0PrescalerValue value);
+void setTimer0Prescaler(TimerPrescalerValue value);
+
+/// Sets timer 1 prescaler to requested value.
+///
+/// Note that timer 1 does not support all possible prescaler values. If the
+/// given value is not supported, nothing is set.
+///
+/// \param value
+///   Requested prescaler value
+void setTimer1Prescaler(TimerPrescalerValue value);
+
+/// Sets timer 2 prescaler to requested value.
+///
+/// \param value
+///   Requested prescaler value
+void setTimer2Prescaler(TimerPrescalerValue value);
+
 
 // Possible voltage references
 enum VoltageReference {
