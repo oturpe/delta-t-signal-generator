@@ -14,6 +14,21 @@
 
 #include "IndicatorController.h"
 
+/// Initializes pins D5 and D6 as phase correct pwm and enables them.
+void initializePwm() {
+    setDataDirection(D, 6, true);
+
+    // Non-inverting mode
+    TCCR0A |= BV(COM0A1) | BV(COM0B1);
+    // Fast pwm mode
+    TCCR0A |= BV(WGM00) | BV(WGM00);
+
+    Atmega328p::setTimer0Prescaler(PWM_PRESCALER);
+
+    // Enable pwm
+    TCCR0A |= BV(COM0A1);
+}
+
 /// Initializes analog to digital conversion by setting the reference and
 /// prescaler.
 void initializeAdc() {
@@ -52,12 +67,17 @@ int main() {
     IndicatorController indicator(B, 0, 5);
 
     initializeAdc();
+    initializePwm();
+
+    uint8_t brightness = 0;
 
     while (true) {
          indicator.run();
 
-         uint16_t frequency = senseFrequencyAdjust();
-         // TODO: Use this value
+         uint8_t frequency = senseFrequencyAdjust()/4;
+         // TODO: Use this value properly
+         OCR0A = frequency;
+         OCR0B = 0xff - frequency;
 
         _delay_ms(LOOP_DELAY);
     }

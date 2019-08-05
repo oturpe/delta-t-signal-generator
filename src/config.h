@@ -4,5 +4,8 @@
 // Needed by util/delay.h
 #define F_CPU 1000000UL
 
+// Pwm prescaler value
+#define PWM_PRESCALER Atmega328p::PSV_1
+
 // Delay between two executions of main loop, given in millisecond.
 #define LOOP_DELAY 100
